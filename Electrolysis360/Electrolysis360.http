@@ -1,0 +1,6 @@
+@Electrolysis360_HostAddress = http://localhost:5126
+
+GET {{Electrolysis360_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
