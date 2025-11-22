@@ -34,7 +34,7 @@ namespace Electrolysis360.Controllers
         {
             try
             {
-                var properties = _electrolysisService.CalculateAlloyProperties(composition);
+                var properties = _electrolysisService.CalculateProcess(composition);
                 return Ok(properties);
             }
             catch (Exception ex)

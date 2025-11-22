@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Electrolysis360")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9d61a14113598884955fbd2a4ef697cad98edb5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92f8df9fe1891a266a1504580ad992f2dddf4650")]
 [assembly: System.Reflection.AssemblyProductAttribute("Electrolysis360")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Electrolysis360")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

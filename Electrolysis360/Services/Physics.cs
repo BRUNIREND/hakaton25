@@ -2,29 +2,27 @@ using Electrolysis360.Models;
 
 namespace Electrolysis360.Services
 {
-    public interface IElectrolysisService
+    interface IPhysics
     {
-        SimulationResponse CalculateProcess(SimulationRequest request);
-        ProcessState AnalyzeProcessState(SimulationRequest request);
-
+        public SimulationResponse CalculateProcess(SimulationRequest request); // Рассчитывание физических процессов на основе входных данных и констант
+        public ProcessState AnalyzeProcessState(SimulationRequest request); // Анализ рассчитанных данных на критические ситуации
     }
 
-    public class ElectrolysisService : IElectrolysisService
+    public class Physics : IPhysics
     {
+        
         public SimulationResponse CalculateProcess(SimulationRequest request)
         {
-            var response = new SimulationResponse();
             var processState = AnalyzeProcessState(request);
 
-            // Расчет выхода по току с учетом поправок
+            // Расчет выхода по току с учетом всех поправок
             double currentEfficiency = CalculateCurrentEfficiency(request, processState);
-
+            // Расчет удельного расхода энергии
             double energyConsumption = CalculateEnergyConsumption(request.Voltage, currentEfficiency);
-
+            
+            // Расчет расхода анодного материала
             double anodeConsumption = CalculateAnodeConsumption(currentEfficiency);
-
-            return new SimulationResponse
-            {
+            return new SimulationResponse{
                 CurrentEfficiency = currentEfficiency,
                 EnergyConsumption = energyConsumption,
                 AnodeConsumption = anodeConsumption,
@@ -34,7 +32,6 @@ namespace Electrolysis360.Services
                 Timestamp = DateTime.UtcNow
             };
         }
-        
         public ProcessState AnalyzeProcessState(SimulationRequest request)
         {
             var state = new ProcessState();
@@ -161,5 +158,6 @@ namespace Electrolysis360.Services
             
             return warnings;
         }
+
     }
 }
