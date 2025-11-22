@@ -85,7 +85,10 @@ const App: React.FC = () => {
 
           <div className="content-row">
             <AlloyCalculator />
-            <ElectrolGraf />
+            <ElectrolGraf 
+              parameters={results}
+              values={parameters}
+            />
           </div>
         </div>
       </div>
