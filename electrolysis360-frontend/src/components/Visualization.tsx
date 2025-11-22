@@ -21,7 +21,10 @@ const Visualization: React.FC<VisualizationProps> = ({
       default: return '#27ae60';
     }
   };
-
+  console.log("---")
+  console.log(results.warnings)
+  console.log("---")
+  
   return (
     <div className="panel visualization-panel">
       <h2>Визуализация процесса</h2>
@@ -51,6 +54,13 @@ const Visualization: React.FC<VisualizationProps> = ({
           <div>Выход: {results.currentEfficiency?.toFixed(1)}%</div>
         </div>
         <div>Статус: <strong>{results.status}</strong></div>
+        {results.warnings && (
+          <div className={`warning-message ${results.status.toLowerCase()}`}>             
+            <ul style={{listStyleType: 'none'}}>
+              {results.warnings.map(ptm => <li>{ptm}</li>)}
+            </ul>
+          </div>
+        )}
       </div>
 
       <EfficiencyChart data={chartData} />

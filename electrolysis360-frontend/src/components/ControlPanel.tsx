@@ -124,9 +124,11 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             {getStatusText(results.status)}
           </span>
         </h3>
-        {results.warning && (
-          <div className={`warning-message ${results.status.toLowerCase()}`}>
-            {results.warning}
+        {results.warnings && (
+          <div className={`warning-message ${results.status.toLowerCase()}`}>             
+            <ul style={{listStyleType: 'none'}}>
+              {results.warnings.map(ptm => <li>{ptm}</li>)}
+            </ul>
           </div>
         )}
       </div>
