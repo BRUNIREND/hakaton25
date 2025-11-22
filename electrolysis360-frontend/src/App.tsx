@@ -5,11 +5,13 @@ import ControlPanel from './components/ControlPanel';
 import Visualization from './components/Visualization';
 import AlloyCalculator from './components/AlloyCalculator';
 import ExperimentHistory from './components/ExperimentHistory';
+import ElectrolGraf from './components/ElectrolGraf';
 import './styles/App.css';
 
 const App: React.FC = () => {
   const [parameters, setParameters] = useState<SimulationRequest>({
     current: 200,
+    voltage: 4.2,
     temperature: 960,
     concentration: 3.0,
   });
@@ -70,7 +72,7 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>🎓 Электролиз 360 - Обучающий симулятор</h1>
+        <h1>Электролиз 360</h1>
         <p>Интерактивный симулятор процесса электролиза алюминия</p>
       </header>
 
@@ -91,7 +93,7 @@ const App: React.FC = () => {
 
           <div className="content-row">
             <AlloyCalculator />
-            <ExperimentHistory />
+            <ElectrolGraf />
           </div>
         </div>
       </div>

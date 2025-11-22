@@ -46,7 +46,7 @@ const AlloyCalculator: React.FC = () => {
 
   return (
     <div className="panel alloy-calculator">
-      <h2>🧪 Калькулятор сплавов</h2>
+      <h2>Калькулятор сплавов</h2>
       
       <div style={{ marginBottom: '1rem' }}>
         <div style={{ margin: '0.5rem 0' }}>
