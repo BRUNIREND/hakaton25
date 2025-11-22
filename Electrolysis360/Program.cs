@@ -1,4 +1,4 @@
-using Electrolysis360.Hub;
+// using Electrolysis360.Hub;
 using Electrolysis360.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -103,7 +103,7 @@ app.UseRouting();
 // Authentication & Authorization (if needed in future)
 // app.UseAuthentication();
 // app.UseAuthorization();
-app.MapHub<SignalRHub>("/electrolysisHub");
+// app.MapHub<SignalRHub>("/electrolysisHub");
 app.MapControllers();
 
 // Global error handling endpoint

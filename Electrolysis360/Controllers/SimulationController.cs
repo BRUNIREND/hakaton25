@@ -29,18 +29,18 @@ namespace Electrolysis360.Controllers
             }
         }
         
-        [HttpPost("alloy-properties")]
-        public IActionResult CalculateAlloyProperties([FromBody] Dictionary<string, double> composition)
-        {
-            try
-            {
-                var properties = _electrolysisService.CalculateProcess(composition);
-                return Ok(properties);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
-        }
+        // [HttpPost("alloy-properties")]
+        // public IActionResult CalculateAlloyProperties([FromBody] Dictionary<string, double> composition)
+        // {
+        //     try
+        //     {
+        //         var properties = _electrolysisService.CalculateProcess(composition);
+        //         return Ok(properties);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(new { error = ex.Message });
+        //     }
+        // }
     }
 }

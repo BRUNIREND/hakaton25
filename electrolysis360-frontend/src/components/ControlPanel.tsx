@@ -1,15 +1,10 @@
 import React from 'react';
-import { SimulationRequest } from '../types/models';
+import { SimulationRequest, SimulationResponse } from '../types/models';
 
 interface ControlPanelProps {
   parameters: SimulationRequest;
   onParametersChange: (params: SimulationRequest) => void;
-  results: {
-    currentEfficiency: number;
-    energyConsumption: number;
-    status: string;
-    warning?: string;
-  };
+  results: SimulationResponse
 }
 
 const ControlPanel: React.FC<ControlPanelProps> = ({
