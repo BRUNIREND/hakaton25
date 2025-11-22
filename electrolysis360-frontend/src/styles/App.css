@@ -110,6 +110,11 @@ body {
   font-size: 1.1em;
 }
 
+.electrolyzer-viz div[style*="cursor: pointer"]:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
 .slider {
   width: 100%;
   height: 6px;

@@ -18,6 +18,12 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
       [param]: value,
     });
   };
+  const handleInputChange = (param: keyof SimulationRequest, value: number) => {
+    onParametersChange({
+      ...parameters,
+      [param]: value,
+    });
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -45,6 +51,9 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         <label>
           Сила тока: <span className="slider-value">{parameters.current}</span> кА
         </label>
+        <input type="text" onChange={(e) => handleInputChange('current', parseFloat(e.target.value))}>
+
+        </input>
         <input
           type="range"
           min="200"
@@ -64,14 +73,17 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         <label>
           Напряжение на Ванне: <span className="slider-value">{parameters.voltage}</span> В
         </label>
+        <input type="text" onChange={(e) => handleInputChange('voltage', parseFloat(e.target.value))}>
+
+        </input>
         <input
-          type="range"
-          min="0.0"
-          max="10.0"
-          value={parameters.voltage}
-          step="0.1"
-          onChange={(e) => handleSliderChange('voltage', parseFloat(e.target.value))}
-          className="slider"
+            type="range"
+            min="0.0"
+            max="10.0"
+            value={parameters.voltage}
+            step="0.1"
+            onChange={(e) => handleSliderChange('voltage', parseFloat(e.target.value))}
+            className="slider"
         />
         <div className="slider-labels">
           <span>0 В</span>
@@ -83,14 +95,17 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         <label>
           Температура Электролита: <span className="slider-value">{parameters.temperature}</span> °C
         </label>
+        <input type="text" onChange={(e) => handleInputChange('temperature', parseFloat(e.target.value))}>
+
+        </input>
         <input
-          type="range"
-          min="700"
-          max="1100"
-          value={parameters.temperature}
-          step="1"
-          onChange={(e) => handleSliderChange('temperature', parseFloat(e.target.value))}
-          className="slider"
+            type="range"
+            min="700"
+            max="1100"
+            value={parameters.temperature}
+            step="1"
+            onChange={(e) => handleSliderChange('temperature', parseFloat(e.target.value))}
+            className="slider"
         />
         <div className="slider-labels">
           <span>700°C</span>
@@ -102,14 +117,17 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         <label>
           Концентрация Глинозёма: <span className="slider-value">{parameters.AluminaConcentration}</span> %
         </label>
+        <input type="text" onChange={(e) => handleInputChange('AluminaConcentration', parseFloat(e.target.value))}>
+
+        </input>
         <input
-          type="range"
-          min="0"
-          max="10"
-          value={parameters.AluminaConcentration}
-          step="0.1"
-          onChange={(e) => handleSliderChange('AluminaConcentration', parseFloat(e.target.value))}
-          className="slider"
+            type="range"
+            min="0"
+            max="10"
+            value={parameters.AluminaConcentration}
+            step="0.1"
+            onChange={(e) => handleSliderChange('AluminaConcentration', parseFloat(e.target.value))}
+            className="slider"
         />
         <div className="slider-labels">
           <span>0%</span>
@@ -119,8 +137,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 
       <div className="status-panel">
         <h3>
-          Статус: 
-          <span style={{ color: getStatusColor(results.status) }}>
+          Статус:
+          <span style={{color: getStatusColor(results.status) }}>
             {getStatusText(results.status)}
           </span>
         </h3>
