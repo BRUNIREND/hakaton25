@@ -1,5 +1,7 @@
 // using Electrolysis360.Hub;
+using Electrolysis360.Data;
 using Electrolysis360.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +14,13 @@ builder.Services.AddEndpointsApiExplorer();
 // Для .NET 9 используем AddOpenApi вместо AddSwaggerGen
 builder.Services.AddOpenApi();
 builder.Services.AddSignalR();
+
+// Подлкючение базы данных 
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Register our custom services
 builder.Services.AddScoped<IElectrolysisService, ElectrolysisService>();
-builder.Services.AddSingleton<IExperimentLogger, ExperimentLogger>();
+builder.Services.AddScoped<IExperimentLogger, ExperimentLogger>();
 
 // CORS configuration for React frontend
 builder.Services.AddCors(options =>
@@ -61,6 +67,13 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 });
 
 var app = builder.Build();
+
+//Создаем таблицы в базе (автоматически)
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.EnsureCreated(); // Создает таблицы если их нет
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -4,15 +4,21 @@ namespace Electrolysis360.Services
 {
     public interface IElectrolysisService
     {
-        SimulationResponse CalculateProcess(SimulationRequest request);
+        Task<SimulationResponse> CalculateProcess(SimulationRequest request);
         ProcessState AnalyzeProcessState(SimulationRequest request);
 
     }
 
     public class ElectrolysisService : IElectrolysisService
     {
-        
-        public SimulationResponse CalculateProcess(SimulationRequest request)
+        private readonly IExperimentLogger logger;
+
+        public ElectrolysisService(IExperimentLogger logger)
+        {
+            this.logger = logger;   
+        }
+
+        public async Task<SimulationResponse> CalculateProcess(SimulationRequest request)
         {
             
             var processState = AnalyzeProcessState(request);
@@ -24,9 +30,7 @@ namespace Electrolysis360.Services
 
             double anodeConsumption = CalculateAnodeConsumption(currentEfficiency);
 
-
-
-            return new SimulationResponse
+            SimulationResponse response = new SimulationResponse
             {
                 CurrentEfficiency = currentEfficiency,
                 EnergyConsumption = energyConsumption,
@@ -35,6 +39,12 @@ namespace Electrolysis360.Services
                 Warnings = GenerateWarnings(processState),
                 Timestamp = DateTime.UtcNow
             };
+
+            // Сохраняем расчёты в бд
+            await logger.SaveExperimentAsync(request, response);
+
+            return response;
+          
         }
         
         public ProcessState AnalyzeProcessState(SimulationRequest request)

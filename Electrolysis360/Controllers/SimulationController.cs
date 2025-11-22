@@ -16,11 +16,11 @@ namespace Electrolysis360.Controllers
         }
         
         [HttpPost("calculate")]
-        public IActionResult CalculateProcess([FromBody] SimulationRequest request)
+        public async Task<IActionResult> CalculateProcess([FromBody] SimulationRequest request)
         {
             try
             {
-                SimulationResponse result = _electrolysisService.CalculateProcess(request);
+                SimulationResponse result = await _electrolysisService.CalculateProcess(request);
                 return Ok(result);
             }
             catch (Exception ex)
