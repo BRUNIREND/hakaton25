@@ -2,22 +2,9 @@ import React, { useState } from 'react';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 import { SimulationRequest } from '../types/models';
 
-interface ControlPanelProps {
-  parameters: SimulationRequest;
-  onParametersChange: (params: SimulationRequest) => void;
-  results: {
-    currentEfficiency: number;
-    energyConsumption: number;
-    status: string;
-    warning?: string;
-  };
-}
 
-const ElectrolGraf: React.FC<ControlPanelProps> = ({
-  parameters,
-  onParametersChange,
-  results,
-}) => {
+
+const ElectrolGraf: React.FC = () => {
 
     const data = [
         {
