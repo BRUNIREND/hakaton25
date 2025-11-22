@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yaros\\AndroidStudioProjects\\hakaton25\\Electrolysis360\\Electrolysis360.csproj": {}
+    "C:\\учёба\\kakaton\\louHahaton\\hakaton25\\Electrolysis360\\Electrolysis360.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yaros\\AndroidStudioProjects\\hakaton25\\Electrolysis360\\Electrolysis360.csproj": {
+    "C:\\учёба\\kakaton\\louHahaton\\hakaton25\\Electrolysis360\\Electrolysis360.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yaros\\AndroidStudioProjects\\hakaton25\\Electrolysis360\\Electrolysis360.csproj",
+        "projectUniqueName": "C:\\учёба\\kakaton\\louHahaton\\hakaton25\\Electrolysis360\\Electrolysis360.csproj",
         "projectName": "Electrolysis360",
-        "projectPath": "C:\\Users\\yaros\\AndroidStudioProjects\\hakaton25\\Electrolysis360\\Electrolysis360.csproj",
-        "packagesPath": "C:\\Users\\yaros\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yaros\\AndroidStudioProjects\\hakaton25\\Electrolysis360\\obj\\",
+        "projectPath": "C:\\учёба\\kakaton\\louHahaton\\hakaton25\\Electrolysis360\\Electrolysis360.csproj",
+        "packagesPath": "C:\\Users\\Vitaly\\.nuget\\packages\\",
+        "outputPath": "C:\\учёба\\kakaton\\louHahaton\\hakaton25\\Electrolysis360\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\yaros\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Vitaly\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -36,9 +42,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -47,6 +53,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.2.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -72,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
