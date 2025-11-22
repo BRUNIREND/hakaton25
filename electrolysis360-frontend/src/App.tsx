@@ -13,12 +13,14 @@ const App: React.FC = () => {
     current: 200,
     voltage: 4.2,
     temperature: 960,
-    concentration: 3.0,
+    AluminaConcentration: 3.5,
   });
 
   const [results, setResults] = useState<SimulationResponse>({
     currentEfficiency: 0,
     energyConsumption: 0,
+    anodeConsumption: 0,
+    warning: [],
     status: 'Normal',
     timestamp: new Date().toISOString(),
   });
@@ -31,7 +33,9 @@ const App: React.FC = () => {
     try {
       const response = await SimulationRequestAPI(parameters);
       setResults(response);
-
+      console.log(parameters)
+      console.log(results)
+      console.log(results)
       // Обновляем данные графика
       const newDataPoint: ChartDataPoint = {
         timestamp: new Date().toLocaleTimeString(),

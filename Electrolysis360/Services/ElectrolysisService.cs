@@ -11,9 +11,10 @@ namespace Electrolysis360.Services
 
     public class ElectrolysisService : IElectrolysisService
     {
+        
         public SimulationResponse CalculateProcess(SimulationRequest request)
         {
-            var response = new SimulationResponse();
+            
             var processState = AnalyzeProcessState(request);
 
             // Расчет выхода по току с учетом поправок
@@ -23,6 +24,8 @@ namespace Electrolysis360.Services
 
             double anodeConsumption = CalculateAnodeConsumption(currentEfficiency);
 
+
+
             return new SimulationResponse
             {
                 CurrentEfficiency = currentEfficiency,
@@ -30,7 +33,6 @@ namespace Electrolysis360.Services
                 AnodeConsumption = anodeConsumption,
                 Status = GetOverallStatus(processState),
                 Warnings = GenerateWarnings(processState),
-                ProcessState = processState,
                 Timestamp = DateTime.UtcNow
             };
         }
@@ -61,15 +63,17 @@ namespace Electrolysis360.Services
             double efficiency = baseEfficiency + state.TemperatureEffect + state.ConcentrationEffect;
             
             // Критические сбои резко снижают эффективность
+            if (state.IsElectrolyteFreezing)
+            {
+                efficiency = 70.0; // Резкое падение при застывании
+            }
+            
             if (state.IsAnodeEffect)
             {
                 efficiency = 60.0; // Резкое падение при анодном эффекте
             }
             
-            if (state.IsElectrolyteFreezing)
-            {
-                efficiency = 70.0; // Резкое падение при застывании
-            }
+            
             
             // Ограничиваем диапазон
             return Math.Max(0, Math.Min(100, efficiency));
@@ -100,12 +104,17 @@ namespace Electrolysis360.Services
                 concentration <= PhysicsConstant.OptimalConcentrationMax)
                 return 0;
             
-            if (concentration < PhysicsConstant.OptimalConcentrationMin)
+            if (concentration < PhysicsConstant.OptimalConcentrationMin && concentration >= 3.0)
             {
                 // Недостаток глинозема: -0.5% за каждый процент ниже оптимума
                 double deficit = PhysicsConstant.OptimalConcentrationMin - concentration;
                 return -deficit * PhysicsConstant.ConcentrationPenalty;
             }
+            if (concentration < 3.0)
+            {
+                return 60;
+            }
+            
             
             return 0; // Превышение концентрации не штрафуется в базовой модели
         }
@@ -161,5 +170,11 @@ namespace Electrolysis360.Services
             
             return warnings;
         }
+
+        // private double Eta(SimulationRequest request)
+        // {
+        //     return PhysicsConstant.TheoreticalCurrentEfficiency + 
+        // }
+    
     }
 }

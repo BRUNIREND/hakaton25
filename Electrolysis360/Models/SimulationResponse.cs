@@ -9,7 +9,6 @@ namespace Electrolysis360.Models
         public double AnodeConsumption { get; set; } // Расход_Анода, кг/т
         public string Status { get; set; } = "Normal";
         public List<string> Warnings { get; set; } = new();
-        public ProcessState ProcessState { get; set; } = new();
         public DateTime Timestamp { get; set; }
 
         public event Action<string, object>? PropertyChanged;
