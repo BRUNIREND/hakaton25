@@ -55,8 +55,10 @@ const Visualization: React.FC<VisualizationProps> = ({
         </div>
         <div>Статус: <strong>{results.status}</strong></div>
         {results.warnings && (
-          <div className={`warning-message ${results.status.toLowerCase()}`}>
-             {results.warnings}
+          <div className={`warning-message ${results.status.toLowerCase()}`}>             
+            <ul style={{listStyleType: 'none'}}>
+              {results.warnings.map(ptm => <li>{ptm}</li>)}
+            </ul>
           </div>
         )}
       </div>

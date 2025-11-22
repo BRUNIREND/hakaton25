@@ -125,12 +125,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           </span>
         </h3>
         {results.warnings && (
-          <div className={`warning-message ${results.status.toLowerCase()}`}>
-<<<<<<< HEAD
-             {results.warnings}
-=======
-            {results.warning}
->>>>>>> 113b56af381c0f718ad3bf27e1d26707b1ae87f0
+          <div className={`warning-message ${results.status.toLowerCase()}`}>             
+            <ul style={{listStyleType: 'none'}}>
+              {results.warnings.map(ptm => <li>{ptm}</li>)}
+            </ul>
           </div>
         )}
       </div>
