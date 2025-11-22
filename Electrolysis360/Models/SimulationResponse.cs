@@ -8,5 +8,17 @@ namespace Electrolysis360.Models
         public string? Warning { get; set; }
         public Dictionary<string, double>? AlloyProperties { get; set; }
         public DateTime Timestamp { get; set; }
+
+        public event Action<string, object>? PropertyChanged;
+
+        public void UpdateProperty(string propertyName, object value)
+        {
+            var property = GetType().GetProperty(propertyName);
+            if (property != null)
+            {
+                property.SetValue(this, value);
+                PropertyChanged?.Invoke(propertyName, value);
+            }
+        }
     }
 }

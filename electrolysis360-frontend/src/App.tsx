@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { SimulationRequest, SimulationResponse, ChartDataPoint } from './types/models';
-import { ElectrolysisApiService } from './services/api';
 import ControlPanel from './components/ControlPanel';
 import Visualization from './components/Visualization';
 import AlloyCalculator from './components/AlloyCalculator';
 import ExperimentHistory from './components/ExperimentHistory';
 import ElectrolGraf from './components/ElectrolGraf';
 import './styles/App.css';
+import {SimulationRequestAPI} from "./services/BackendAPI";
 
 const App: React.FC = () => {
   const [parameters, setParameters] = useState<SimulationRequest>({
@@ -29,7 +29,7 @@ const App: React.FC = () => {
   const calculateProcess = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await ElectrolysisApiService.calculateProcess(parameters);
+      const response = await SimulationRequestAPI(parameters);
       setResults(response);
 
       // Обновляем данные графика
@@ -47,14 +47,6 @@ const App: React.FC = () => {
 
     } catch (error) {
       console.error('Error calculating process:', error);
-      // Fallback to mock data if API is not available
-      const mockResponse: SimulationResponse = {
-        currentEfficiency: 85 + Math.random() * 10,
-        energyConsumption: 13 + Math.random() * 2,
-        status: 'Normal',
-        timestamp: new Date().toISOString(),
-      };
-      setResults(mockResponse);
     } finally {
       setLoading(false);
     }

@@ -1,3 +1,4 @@
+using Electrolysis360.Hub;
 using Electrolysis360.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 // Для .NET 9 используем AddOpenApi вместо AddSwaggerGen
 builder.Services.AddOpenApi();
-
+builder.Services.AddSignalR();
 // Register our custom services
 builder.Services.AddScoped<IElectrolysisService, ElectrolysisService>();
 builder.Services.AddSingleton<IExperimentLogger, ExperimentLogger>();
@@ -102,7 +103,7 @@ app.UseRouting();
 // Authentication & Authorization (if needed in future)
 // app.UseAuthentication();
 // app.UseAuthorization();
-
+app.MapHub<SignalRHub>("/electrolysisHub");
 app.MapControllers();
 
 // Global error handling endpoint
