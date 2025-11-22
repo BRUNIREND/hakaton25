@@ -100,15 +100,15 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 
       <div className="slider-container">
         <label>
-          Концентрация Глинозёма: <span className="slider-value">{parameters.concentration}</span> %
+          Концентрация Глинозёма: <span className="slider-value">{parameters.AluminaConcentration}</span> %
         </label>
         <input
           type="range"
           min="2"
           max="6"
-          value={parameters.concentration}
+          value={parameters.AluminaConcentration}
           step="0.1"
-          onChange={(e) => handleSliderChange('concentration', parseFloat(e.target.value))}
+          onChange={(e) => handleSliderChange('AluminaConcentration', parseFloat(e.target.value))}
           className="slider"
         />
         <div className="slider-labels">
