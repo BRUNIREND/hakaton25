@@ -20,7 +20,7 @@ const App: React.FC = () => {
     currentEfficiency: 0,
     energyConsumption: 0,
     anodeConsumption: 0,
-    warning: [],
+    warnings: [],
     status: 'Normal',
     timestamp: new Date().toISOString(),
   });

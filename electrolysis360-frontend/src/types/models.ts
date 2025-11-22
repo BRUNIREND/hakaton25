@@ -11,7 +11,7 @@ export interface SimulationResponse {
   energyConsumption: number; // Расход энергии (кВт·ч/кг)
   anodeConsumption: number;
   status: 'Normal' | 'Warning' | 'Critical';
-  warning?: string[];
+  warnings?: string[];
   //alloyProperties?: Record<string, number>;
   timestamp: string;
 }
