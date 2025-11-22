@@ -13,7 +13,7 @@ const App: React.FC = () => {
     current: 200,
     voltage: 4.2,
     temperature: 960,
-    concentration: 3.5,
+    AluminaConcentration: 3.5,
   });
 
   const [results, setResults] = useState<SimulationResponse>({
@@ -35,7 +35,7 @@ const App: React.FC = () => {
       setResults(response);
       console.log(parameters)
       console.log(results)
-
+      console.log(results)
       // Обновляем данные графика
       const newDataPoint: ChartDataPoint = {
         timestamp: new Date().toLocaleTimeString(),

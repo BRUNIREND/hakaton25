@@ -2,7 +2,7 @@ export interface SimulationRequest {
   voltage: number; // Напряжение (В)
   current: number; // Сила тока (кА)
   temperature: number; // Температура (°C)
-  concentration: number; // Концентрация Al2O3
+  AluminaConcentration: number; // Концентрация Al2O3
   //alloyComposition?: Record<string, number>; // Состав сплава
 }
 

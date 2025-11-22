@@ -1,13 +1,10 @@
 import React from 'react';
 import EfficiencyChart from './Charts/EfficiencyChart';
+import {SimulationRequest, SimulationResponse} from "../types/models";
 
 interface VisualizationProps {
-  parameters: {
-    current: number;
-    temperature: number;
-    concentration: number;
-  };
-  results: any;
+  parameters: SimulationRequest
+  results: SimulationResponse;
   chartData: Array<{ timestamp: string; efficiency: number }>;
 }
 
