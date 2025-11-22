@@ -90,53 +90,63 @@ const ElectrolGraf: React.FC<ElectrolGrafProps> = ({
 
     // }, [parameters, values]);
 
+    const [selectedChart, setSelectedChart] = useState("T_Eta");
+
     return (
         <div className="panel control-panel">
             <h2>Графики зависимости</h2>
+
+            {/* Селектор графиков */}
+            <div style={{ marginBottom: 16 }}>
+                <select
+                    value={selectedChart}
+                    onChange={(e) => setSelectedChart(e.target.value)}
+                >
+                    <option value="T_Eta">T → η</option>
+                    <option value="Al2O3_Eta">Al₂O₃ → η</option>
+                    <option value="U_Eud">U → Eud</option>
+                </select>
+            </div>
             <div className="highlight-bar-charts" style={{ userSelect: 'none', width: '100%' }}>
 
-                <LineChart
-                    width={700}
-                    height={350}
-                    data={dataT_Eta.slice(2)}
-                >
+                {/* --- График 1 --- */}
+            {selectedChart === "T_Eta" && (
+                <LineChart width={700} height={350} data={dataT_Eta.slice(2)}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis yAxisId="1" dataKey="Eta" />
                     <YAxis orientation="right" yAxisId="2" dataKey="Temperature" />
                     <Tooltip />
-
                     <Line yAxisId="1" type="monotone" dataKey="Eta" stroke="#2116f1ff" />
                     <Line yAxisId="2" type="monotone" dataKey="Temperature" stroke="#cd1306ff" />
                 </LineChart>
-                <LineChart
-                    width={700}
-                    height={350}
-                    data={dataAl2O3_Eta.slice(2)}
-                >
+            )}
+
+            {/* --- График 2 --- */}
+            {selectedChart === "Al2O3_Eta" && (
+                <LineChart width={700} height={350} data={dataAl2O3_Eta.slice(2)}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis yAxisId="1" dataKey="Eta" />
                     <YAxis orientation="right" yAxisId="2" dataKey="AluminaConcentration" />
                     <Tooltip />
-
                     <Line yAxisId="1" type="monotone" dataKey="Eta" stroke="#2116f1ff" />
                     <Line yAxisId="2" type="monotone" dataKey="AluminaConcentration" stroke="#78a69bff" />
                 </LineChart>
-                <LineChart
-                    width={700}
-                    height={350}
-                    data={dataU_Eud.slice(2)}
-                >
+            )}
+
+            {/* --- График 3 --- */}
+            {selectedChart === "U_Eud" && (
+                <LineChart width={700} height={350} data={dataU_Eud.slice(2)}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis yAxisId="1" dataKey="EnergyConsumption" />
                     <YAxis orientation="right" yAxisId="2" dataKey="Voltage" />
                     <Tooltip />
-
                     <Line yAxisId="1" type="monotone" dataKey="EnergyConsumption" stroke="#25d2cfff" />
                     <Line yAxisId="2" type="monotone" dataKey="Voltage" stroke="#a437daff" />
                 </LineChart>
+            )}
             </div>
         </div>
     );
