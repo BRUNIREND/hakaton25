@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
+import { SimulationRequest } from '../types/models';
 
-interface AlloyComposition {
-  Mg: number;
-  Si: number;
-  Cu: number;
-};
+
 
 const ElectrolGraf: React.FC = () => {
 
@@ -44,6 +41,7 @@ const ElectrolGraf: React.FC = () => {
             name: 'F',
             uv: 189,
             pv: 480,
+
             amt: 2400,
         }
     ];
