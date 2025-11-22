@@ -66,16 +66,16 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         </label>
         <input
           type="range"
-          min="4.0"
-          max="4.5"
+          min="0.0"
+          max="10.0"
           value={parameters.voltage}
-          step="0.01"
+          step="0.1"
           onChange={(e) => handleSliderChange('voltage', parseFloat(e.target.value))}
           className="slider"
         />
         <div className="slider-labels">
-          <span>4.0 В</span>
-          <span>4.5 В</span>
+          <span>0 В</span>
+          <span>10 В</span>
         </div>
       </div>
 
@@ -85,16 +85,16 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         </label>
         <input
           type="range"
-          min="950"
-          max="970"
+          min="700"
+          max="1100"
           value={parameters.temperature}
-          step="0.5"
+          step="1"
           onChange={(e) => handleSliderChange('temperature', parseFloat(e.target.value))}
           className="slider"
         />
         <div className="slider-labels">
-          <span>950°C</span>
-          <span>970°C</span>
+          <span>700°C</span>
+          <span>1100°C</span>
         </div>
       </div>
 
@@ -104,16 +104,16 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         </label>
         <input
           type="range"
-          min="2"
-          max="6"
+          min="0"
+          max="10"
           value={parameters.AluminaConcentration}
           step="0.1"
           onChange={(e) => handleSliderChange('AluminaConcentration', parseFloat(e.target.value))}
           className="slider"
         />
         <div className="slider-labels">
-          <span>2%</span>
-          <span>6%</span>
+          <span>0%</span>
+          <span>10%</span>
         </div>
       </div>
 
@@ -126,7 +126,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         </h3>
         {results.warning && (
           <div className={`warning-message ${results.status.toLowerCase()}`}>
-            ⚠️ {results.warning}
+            {results.warning}
           </div>
         )}
       </div>
