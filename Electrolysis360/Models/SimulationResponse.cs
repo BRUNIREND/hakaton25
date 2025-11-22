@@ -2,11 +2,14 @@ namespace Electrolysis360.Models
 {
     public class SimulationResponse
     {
-        public double CurrentEfficiency { get; set; } // Выход по току (%)
-        public double EnergyConsumption { get; set; } // Расход энергии (кВт·ч/кг)
+        
+
+        public double CurrentEfficiency { get; set; } // Eta, %
+        public double EnergyConsumption { get; set; } // E_уд, кВт·ч/т
+        public double AnodeConsumption { get; set; } // Расход_Анода, кг/т
         public string Status { get; set; } = "Normal";
-        public string? Warning { get; set; }
-        public Dictionary<string, double>? AlloyProperties { get; set; }
+        public List<string> Warnings { get; set; } = new();
+        public ProcessState ProcessState { get; set; } = new();
         public DateTime Timestamp { get; set; }
     }
 }
