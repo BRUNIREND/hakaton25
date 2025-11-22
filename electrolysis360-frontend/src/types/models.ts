@@ -1,4 +1,5 @@
 export interface SimulationRequest {
+  voltage: number; // Напряжение (В)
   current: number; // Сила тока (кА)
   temperature: number; // Температура (°C)
   concentration: number; // Концентрация Al2O3

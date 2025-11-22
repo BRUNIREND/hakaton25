@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { SimulationRequest, SimulationResponse, ChartDataPoint } from './types/models';
-import { ElectrolysisApiService } from './services/api';
 import ControlPanel from './components/ControlPanel';
 import Visualization from './components/Visualization';
 import AlloyCalculator from './components/AlloyCalculator';
 import ExperimentHistory from './components/ExperimentHistory';
+import ElectrolGraf from './components/ElectrolGraf';
 import './styles/App.css';
+import {SimulationRequestAPI} from "./services/BackendAPI";
 
 const App: React.FC = () => {
   const [parameters, setParameters] = useState<SimulationRequest>({
     current: 200,
+    voltage: 4.2,
     temperature: 960,
     concentration: 3.0,
   });
@@ -27,7 +29,7 @@ const App: React.FC = () => {
   const calculateProcess = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await ElectrolysisApiService.calculateProcess(parameters);
+      const response = await SimulationRequestAPI(parameters);
       setResults(response);
 
       // Обновляем данные графика
@@ -45,14 +47,6 @@ const App: React.FC = () => {
 
     } catch (error) {
       console.error('Error calculating process:', error);
-      // Fallback to mock data if API is not available
-      const mockResponse: SimulationResponse = {
-        currentEfficiency: 85 + Math.random() * 10,
-        energyConsumption: 13 + Math.random() * 2,
-        status: 'Normal',
-        timestamp: new Date().toISOString(),
-      };
-      setResults(mockResponse);
     } finally {
       setLoading(false);
     }
@@ -70,7 +64,7 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>🎓 Электролиз 360 - Обучающий симулятор</h1>
+        <h1>Электролиз 360</h1>
         <p>Интерактивный симулятор процесса электролиза алюминия</p>
       </header>
 
@@ -91,7 +85,7 @@ const App: React.FC = () => {
 
           <div className="content-row">
             <AlloyCalculator />
-            <ExperimentHistory />
+            <ElectrolGraf />
           </div>
         </div>
       </div>

@@ -27,7 +27,7 @@ const Visualization: React.FC<VisualizationProps> = ({
 
   return (
     <div className="panel visualization-panel">
-      <h2>🔬 Визуализация процесса</h2>
+      <h2>Визуализация процесса</h2>
       
       <div className="electrolyzer-viz" style={{
         background: 'linear-gradient(to bottom, #34495e, #2c3e50)',

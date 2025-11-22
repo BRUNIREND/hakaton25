@@ -7,7 +7,7 @@ interface EfficiencyChartProps {
 const EfficiencyChart: React.FC<EfficiencyChartProps> = ({ data }) => {
   return (
     <div className="chart-container">
-      <h3>📊 Динамика выхода по току</h3>
+      <h3>Динамика выхода по току</h3>
       <div style={{ 
         background: '#f8f9fa', 
         padding: '1rem', 

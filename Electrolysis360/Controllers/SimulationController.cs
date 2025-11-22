@@ -20,7 +20,7 @@ namespace Electrolysis360.Controllers
         {
             try
             {
-                var result = _electrolysisService.CalculateProcess(request);
+                SimulationResponse result = _electrolysisService.CalculateProcess(request);
                 return Ok(result);
             }
             catch (Exception ex)

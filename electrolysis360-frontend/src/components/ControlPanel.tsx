@@ -44,7 +44,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 
   return (
     <div className="panel control-panel">
-      <h2>⚙️ Панель управления</h2>
+      <h2>Панель управления</h2>
       
       <div className="slider-container">
         <label>
@@ -52,7 +52,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         </label>
         <input
           type="range"
-          min="100"
+          min="200"
           max="400"
           value={parameters.current}
           step="1"
@@ -60,46 +60,65 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           className="slider"
         />
         <div className="slider-labels">
-          <span>100 кА</span>
+          <span>200 кА</span>
           <span>400 кА</span>
         </div>
       </div>
 
       <div className="slider-container">
         <label>
-          Температура: <span className="slider-value">{parameters.temperature}</span> °C
+          Напряжение на Ванне: <span className="slider-value">{parameters.voltage}</span> В
         </label>
         <input
           type="range"
-          min="800"
-          max="1100"
-          value={parameters.temperature}
-          step="1"
-          onChange={(e) => handleSliderChange('temperature', parseFloat(e.target.value))}
+          min="4.0"
+          max="4.5"
+          value={parameters.voltage}
+          step="0.01"
+          onChange={(e) => handleSliderChange('voltage', parseFloat(e.target.value))}
           className="slider"
         />
         <div className="slider-labels">
-          <span>800°C</span>
-          <span>1100°C</span>
+          <span>4.0 В</span>
+          <span>4.5 В</span>
         </div>
       </div>
 
       <div className="slider-container">
         <label>
-          Концентрация Al₂O₃: <span className="slider-value">{parameters.concentration}</span> %
+          Температура Электролита: <span className="slider-value">{parameters.temperature}</span> °C
         </label>
         <input
           type="range"
-          min="1"
-          max="8"
+          min="950"
+          max="970"
+          value={parameters.temperature}
+          step="0.5"
+          onChange={(e) => handleSliderChange('temperature', parseFloat(e.target.value))}
+          className="slider"
+        />
+        <div className="slider-labels">
+          <span>950°C</span>
+          <span>970°C</span>
+        </div>
+      </div>
+
+      <div className="slider-container">
+        <label>
+          Концентрация Глинозёма: <span className="slider-value">{parameters.concentration}</span> %
+        </label>
+        <input
+          type="range"
+          min="2"
+          max="6"
           value={parameters.concentration}
           step="0.1"
           onChange={(e) => handleSliderChange('concentration', parseFloat(e.target.value))}
           className="slider"
         />
         <div className="slider-labels">
-          <span>1%</span>
-          <span>8%</span>
+          <span>2%</span>
+          <span>6%</span>
         </div>
       </div>
 
@@ -118,7 +137,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
       </div>
 
       <div className="results">
-        <h3>📊 Результаты:</h3>
+        <h3>Результаты:</h3>
         <div className="result-item">
           <span>Выход по току:</span>
           <strong>{results.currentEfficiency.toFixed(1)}%</strong>
